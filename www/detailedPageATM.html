@@ -1,0 +1,68 @@
+<div data-role="page" id="detailed-page" class="pageStyling">
+
+    <script type="text/javascript">
+        $("#detailed-page").on("pageinit", onPageInit);
+        $("#returnBtn").bind('touchstart', function(e) {
+            returnBack();
+        })
+
+        var openingTimeATM = [];
+
+        function onPageInit(e, data) {
+            var object = serverResponse[selectedIndex];
+            $("#name").text(object["name"]);
+            $("#streetAddress").text(object["streetAddress"] + ", " + object["state"] + " " + object["postcode"]);
+
+            for (var i = 0; i < object["services"].length; i++) {
+                var newObj = object["services"][i];
+
+                if (String(newObj["type"]).toLowerCase() == "atm")
+                {
+                    if (newObj["services"]) {
+                        for (var j = 0; j < newObj["services"].length; j++) {
+                            $("#services").append('<p class="subElements">' + "-" + newObj["services"][j]["serviceName"] + '</p>');
+                        }
+                    }
+                    else {
+                        $("#services").append('<p class="subElements">-Does not accept deposit.</p>');
+                    }
+
+                    openingTimeATM[0] = {openTime: newObj["mondayOpenTime"], closeTime: newObj["mondayCloseTime"]};
+                    openingTimeATM[1] = {openTime: newObj["tuesdayOpenTime"], closeTime: newObj["tuesdayCloseTime"]};
+                    openingTimeATM[2] = {openTime: newObj["wednesdayOpenTime"], closeTime: newObj["wednesdayCloseTime"]};
+                    openingTimeATM[3] = {openTime: newObj["thursdayOpenTime"], closeTime: newObj["thursdayCloseTime"]};
+                    openingTimeATM[4] = {openTime: newObj["fridayOpenTime"], closeTime: newObj["fridayCloseTime"]};
+                    openingTimeATM[5] = {openTime: newObj["saturdayOpenTime"], closeTime: newObj["saturdayCloseTime"]};
+                    openingTimeATM[6] = {openTime: newObj["sundayOpenTime"], closeTime: newObj["sundayCloseTime"]};
+                    calculateTime(openingTimeATM, "openingHours");
+                }
+            }
+        }
+
+    </script>
+
+    <div data-role="header" data-position="fixed" data-theme="b" class="headerClass">
+        <a id="returnBtn" style="height: 38%;" data-role="button" class="ui-icon-arrow-l ui-btn-icon-left"  data-mini="true" data-icon="arrow-l">
+        </a>
+        <h1 class="ui-title">ATM Details</h1>
+    </div>
+
+    <div data-role="main" class="ui-content-atmContent">
+        <div class="atmInnerContent">
+            <h2 class="detailedName" id="name"></h2>
+            <p class="addressAndBSB" id="streetAddress"></p>
+        </div>
+        <hr class="horizontalLineATM">
+
+        <div class="atmInnerContent">
+            <h2 class="detailsSubTitle">ATM</h2>
+            <div id="openingHours" class="subElements">
+                <h3 class="subTitle">Opening hours</h3>
+            </div>
+            <div id="services" class="subElements">
+                <h3 class="subTitle">Services</h3>
+            </div>
+        </div>
+
+    </div>
+</div>

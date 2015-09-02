@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <!--<meta name="viewport" content="width=device-width, user-scalable=no" />-->
+
+       
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.3.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <!--<link rel="stylesheet" type="text/css" href="css/latest.css" />-->
+
+        <!--<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>-->
+        <!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false$libraries=places"></script>-->
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB0D5kQGJSi9HEAL0jt48zCuEVJHPpKCGE"></script>
+        <script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+        <!--<script src="http://code.jquery.com/jquery-1.9.0.js"></script>-->
+
+        <title>Westpac ATM Locator</title>
+
+        <style type="text/css">
+
+            body {
+                /* Setting body margins to 0 to have proper positioning of #container div */
+                margin: 0;
+            }
+
+            /* #container div with absolute position and 100% width and height so it takes up whole window */
+            #container {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+
+        </style>
+
+        <script type="text/javascript">
+            $(document).one("mobileinit", function() {
+
+                // Setting #container div as a jqm pageContainer
+                $.mobile.pageContainer = $('#container');
+
+                // Setting default page transition to slide
+//                $.mobile.defaultPageTransition = 'slide';
+
+                $.mobile.defaultPageTransition = 'none';
+                $.mobile.defaultDialogTransition = 'none';
+            });
+
+            $(document).on('pagecreate', '#map-page', function() {
+                $("#listImg").on("click", function (e) {
+                    console.log("list touch entered");
+                    showList();
+                });
+
+                $("#searchImg").bind('click', function (e) {
+                    console.log("searche started");
+                    openSearch();
+                });
+
+                $("#atmMarkerBtn").bind('click', function (e) {
+                    showATMsMarkers();
+                });
+                $("#branchMarkerBtn").bind('click', function (e) {
+                    showBranchMarkers();
+                });
+                $("#allMarkerBtn").bind('click', function (e) {
+                    showAllMarkers();
+                });
+                
+            });
+
+            $(document).on('pageshow', '#map-page', function() {
+                console.log("entered pageshow #map-page");
+                $('#map_canvas').height($(window).height() - ($('[data-role=header]').height() - $('[data-role=footer]').height()));
+            });
+        </script>
+        <script type="text/javascript" src="js/jquery.mobile-1.4.3.min.js"></script>
+
+    </head>
+    <body>
+        <div id="container">
+            <div data-url="map-page" data-role="page" id="map-page">
+                <div data-role="header" data-position="fixed" data-theme="b" class="headerClass">
+                    <div class="center-wrapper" style="padding: 0px; display: block; vertical-align: middle;">
+                        <label class="ui-title">Map View</label>
+                        <!--<div class="ui-btn-right " style="height: 100%;">-->
+                        <a id="searchImg" style="height: 38%;margin-right: 4em;" data-role="button" class="ui-icon-search ui-btn-right" data-mini="true" data-icon="search">
+                            <!--                                <img width="35px" height="35px" style="margin-right: 10px;" alt="Header"
+                                                                 src="img/search_icon_35.png"/>-->
+                        </a>
+
+                        <a id="listImg" style="height: 38%;" data-role="button" class="ui-icon-bars ui-btn-right"  data-mini="true" data-icon="bars">
+                        </a>
+                        <!--                            <img id="listImg" width="35px" height="35px" alt="Header"
+                                                         src="img/list_icon_35.png"/>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+                <div data-role="content" id="content" style="padding: 0px">
+                    <div id="map-canvas" style="padding: 0px; margin: 0px;">
+                    </div>
+                </div>
+                <div data-role="footer" data-position="fixed" id="footer" data-theme="b">
+                    <div data-role="navbar" id="navbar">
+                        <ul>
+                            <li><a href="#" id="atmMarkerBtn" data-role="button" >ATM</a></li>
+                            <li><a href="#" id="branchMarkerBtn" data-role="button" data-theme="b">Branch</a></li>
+                            <li><a href="#" id="allMarkerBtn" data-role="button" data-theme="b">Show All</a></li>
+                        </ul>
+                    </div>
+                </div><!-- /footer -->
+
+                <div data-role="popup" id="popupNotSupported">
+                    <p>
+                        Geolocation is not supported.
+                    <p>
+                </div>
+                <div data-role="popup" id="popupFailed">
+                    <p>
+                        Geolocation failed.
+                    <p>
+                </div>
+            </div>
+
+        </div>
+
+        <div data-role="page" id="search-page">
+
+    <div data-role="header" data-position="fixed" data-theme="b" class="headerClass">
+        <a id="returnBtn" style="height: 38%;" data-role="button" class="ui-icon-arrow-l ui-btn-icon-left"  data-mini="true" data-icon="arrow-l">
+        </a>
+        <h1 class="ui-title">Search Suburb</h1>
+    </div>
+
+    <div data-role="content" style="padding: 20px 10px;" class="pac-container">
+        <input type="text" name="search" id="pac-input" class="controls" data-mini="true" value=""/>
+    </div><!-- /content -->
+
+</div><!-- /page -->
+
+        <script type="text/javascript" src="js/purl.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/restAPI.js"></script>
+
+
+    </body>
+</html>

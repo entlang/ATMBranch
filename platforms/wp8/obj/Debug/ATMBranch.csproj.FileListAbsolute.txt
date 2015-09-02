@@ -1,0 +1,14 @@
+C:\Development\Projects\ATMBranch\platforms\wp8\Bin\Debug\ApplicationIcon.png
+C:\Development\Projects\ATMBranch\platforms\wp8\Bin\Debug\Background.png
+C:\Development\Projects\ATMBranch\platforms\wp8\Bin\Debug\com.westpac.ATMBranch.dll
+C:\Development\Projects\ATMBranch\platforms\wp8\Bin\Debug\com.westpac.ATMBranch.pdb
+C:\Development\Projects\ATMBranch\platforms\wp8\Bin\Debug\AppManifest.xaml
+C:\Development\Projects\ATMBranch\platforms\wp8\Bin\Debug\Properties\WMAppManifest.xml
+C:\Development\Projects\ATMBranch\platforms\wp8\Bin\Debug\CordovaAppProj_Debug_AnyCPU.xap
+C:\Development\Projects\ATMBranch\platforms\wp8\obj\Debug\App.g.cs
+C:\Development\Projects\ATMBranch\platforms\wp8\obj\Debug\cordovalib\CordovaView.g.cs
+C:\Development\Projects\ATMBranch\platforms\wp8\obj\Debug\MainPage.g.cs
+C:\Development\Projects\ATMBranch\platforms\wp8\obj\Debug\com.westpac.ATMBranch.g.resources
+C:\Development\Projects\ATMBranch\platforms\wp8\obj\Debug\com.westpac.ATMBranch.dll
+C:\Development\Projects\ATMBranch\platforms\wp8\obj\Debug\com.westpac.ATMBranch.pdb
+C:\Development\Projects\ATMBranch\platforms\wp8\obj\Debug\XapCacheFile.xml

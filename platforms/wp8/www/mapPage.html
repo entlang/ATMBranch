@@ -1,0 +1,36 @@
+<div data-url="map-page" data-role="page" id="map-page">
+    <script>
+        $("#map-page").on('pagecreate', function(){
+            drawATMs(serverResponse, poss);
+        });
+        
+        $("#map-page").on('pageshow', function() {
+            console.log("entered pageshow #map-page");
+            $('#map_canvas').height($(window).height() - (10 + $('[data-role=header]').height() - $('[data-role=footer]').height()));
+        });
+    </script>
+
+    <div data-role="header" data-position="fixed" data-theme="b" class="headerClass">
+        <div class="center-wrapper" style="padding: 0px; display: block; vertical-align: middle;">
+            <label class="ui-title">Map View</label>
+            <!--<div class="ui-btn-right " style="height: 100%;">-->
+            <a id="searchImg" style="height: 38%;margin-right: 4em;" data-role="button" class="ui-icon-search ui-btn-right" data-mini="true" data-icon="search">
+            </a>
+            <a id="listImg" style="height: 38%;" data-role="button" class="ui-icon-bullets ui-btn-right"  data-mini="true" data-icon="bullets">
+            </a>
+        </div>
+    </div>
+    <div data-role="content" id="content" style="padding: 0px">
+        <div id="map-canvas" style="padding: 0px; margin: 0px;">
+        </div>
+    </div>
+    <div data-role="footer" data-position="fixed" id="footer" data-theme="b"  style="height: 30px; border: 1px red solid; padding: 0px; margin: 0px;">
+        <div data-role="navbar" id="navbar">
+            <ul>
+                <li><a href="#" data-role="button" >ATM</a></li>
+                <li><a href="#" data-role="button">Branch</a></li>
+                <li><a href="#" data-role="button">Global ATM</a></li>
+            </ul>
+        </div>
+    </div><!-- /footer -->
+</div>

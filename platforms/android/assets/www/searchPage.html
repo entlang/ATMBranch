@@ -1,0 +1,32 @@
+<div data-role="page" id="search-page">
+    <script>
+        var geocoder;
+        $(document).on('pagecreate', '#search-page', function(){
+           geocoder = new google.maps.Geocoder();
+           initSearchBox();
+        });
+
+        $("#returnBtn").bind('touchstart', function(e){
+            returnBack();
+        });
+        
+        function initSearchBox() {
+            // Add searchbox
+            var searchControlDiv = document.getElementById('pac-input');
+           // var searchControl = new SearchControl(searchControlDiv, map);
+
+        }
+        
+    </script>
+
+    <div data-role="header" data-position="fixed" data-theme="b" class="headerClass">
+        <a id="returnBtn" style="height: 38%;" data-role="button" class="ui-icon-arrow-l ui-btn-icon-left"  data-mini="true" data-icon="arrow-l">
+        </a>
+        <h1 class="ui-title">Search Suburb</h1>
+    </div>
+
+    <div data-role="content" style="padding: 20px 10px;" class="pac-container">
+        <input type="text" name="search" id="pac-input" class="controls" data-mini="true" value=""/>
+    </div><!-- /content -->
+
+</div><!-- /page -->

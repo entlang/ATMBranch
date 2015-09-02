@@ -1,0 +1,307 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color:#E4E4E4;
+    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #A7A7A7),
+        color-stop(0.51, #E4E4E4)
+        );
+    background-attachment:fixed;
+    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size:12px;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    text-transform:none;
+    width:100%;
+}
+
+/* Portrait layout (default) */
+.app {
+    background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
+    position:absolute;             /* position in the center of the screen */
+    left:50%;
+    top:50%;
+    height:50px;                   /* text area height */
+    width:225px;                   /* text area width */
+    text-align:center;
+    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
+    /* offset horizontal: half of text area width */
+}
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .app {
+        background-position:left center;
+        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
+        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
+        /* offset horizontal: half of image width and text area width */
+    }
+}
+
+h1 {
+    font-size:24px;
+    font-weight:normal;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
+}
+
+.event {
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    color:#FFFFFF;
+    font-size:12px;
+    margin:0px 30px;
+    padding:2px 0px;
+}
+
+.event.listening {
+    background-color:#333333;
+    display:block;
+}
+
+.event.received {
+    background-color:#4B946A;
+    display:none;
+}
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+
+.blink {
+    animation:fade 3000ms infinite;
+    -webkit-animation:fade 3000ms infinite;
+}
+
+.ui-footer {
+    /* Use !important to ensure the target style will be overridden! */
+    border: none !important;
+}
+
+
+/*custom css*/
+
+.pageStyling{
+    background: #DEDEDC !important;
+    height: 100%;
+}
+
+.my_icon_wrapper {
+    float: left;
+    width: 5em; 
+    height: 3.5em;
+    text-align: center;
+    vertical-align: middle;
+    /*border: 1px red solid;*/
+}
+.listIcon{
+    width: 3.5em; 
+    height: 3.5em;
+}
+.center-wrapper{
+    text-align: center;
+    vertical-align: middle;
+    height: 100%;
+}
+
+#mainDiv{
+    position: relative;
+}
+
+#iconDiv{
+    float: left;
+}
+#nameAddressDiv{
+    float: left;
+    width:65%;
+    margin-top: 0.25em;
+    /*border: 1px green solid;*/
+}
+
+#distance{
+    min-height: 0em;
+    height: auto;
+    top: .8em;
+    float:right;
+    right:0em;
+    text-align: center;
+    position:relative;
+}
+
+.ui-btn-text{
+    font-weight:bold;
+    font-size: 12px;
+}
+
+.listItemAddress{
+    font-size: 11px;
+    padding: 0px;
+    margin: 0px;
+}
+
+
+
+
+/*main page*/
+.headerClass{
+    font-size: 1.4em;
+}
+
+
+/*list page*/
+.listItemTitle{
+    font-size: 1.4em;
+}
+.distance{
+    font-size: 1.6em;
+    margin: 0em;
+    padding: 0em;  
+}
+
+/*details page*/
+.tabActive{
+    background: darkred !important;
+    border: 1px darkred solid !important;
+}
+
+.tabInactive {
+    background: lightgray !important;
+    border: 1px darkgray solid !important;
+}
+
+.detailedMain{
+    margin-left: 1em;
+}
+.horizontalLine{
+    margin-left: 0em;
+    margin-right: 1em;
+    height: 0.3em;
+    background: darkred;
+    border: 1px darkgray solid;
+}
+.horizontalLineATM{
+    height: 0.3em;
+    margin-left: 1em;
+    margin-right: 1em;
+    background: darkred;
+    border: 1px darkgray solid;
+}
+
+.detailedName{
+    font-size: 1.7em;
+    font-weight: bold;
+    margin:0.5em 0em 0em 0em;
+}
+
+.detailsSubTitle{
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: .5em;
+    margin-bottom: 0em;
+}
+.addressAndBSB{
+    font-size: 1.4em;
+    padding: 0px;
+    margin: 0px;
+}
+
+.subTitle{
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 1em;
+    margin-bottom: 0.3em;
+}
+.subElements{
+    font-size: 1.1em;
+    padding: 0px;
+    margin: 0px;
+}
+.labelWidth{
+    width: 6em;
+    display: inline-block;
+}
+
+
+
+.ui-content-atmContent{
+    margin: 1em;
+    padding: 0.2em 0 1em 0;
+    background: #ffffff !important; 
+}
+
+#navbarS{
+    background: #ffffff !important; 
+}
+#tab_1, #tab_2{
+    font-size: 1.3em !important;
+}
+.tab-content{
+    background: #ffffff !important; 
+    padding-bottom: 1em;
+    border-top: 1px white solid;
+}
+
+.atmInnerContent{
+    padding: 0em 1em;
+}
+
+.ui-hidden-component {
+    display: none !important;
+}
+
+#atmMarkerBtn.ui-btn-active, #branchMarkerBtn.ui-btn-active, #allMarkerBtn.ui-btn-active, #showATMBtn.ui-btn-active, #showBranch.ui-btn-active, #showAll.ui-btn-active
+{ 
+    border: #145072;
+    background: #383838 !important;
+    /*color: #fff !important;*/
+    /*text-shadow: #ffffff !important;*/
+    /*moz-linear-gradient: #4e89c5, #2567ab !important;*/
+    /*background-webkit-gradient: #5f9cc5, #396b9e;*/
+    /*ms-filter: #4e89c5, #2567ab;*/
+    text: #cccccc !important;
+}
+
+*{
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+}

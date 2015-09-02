@@ -1,0 +1,147 @@
+<div data-role="page" id="list-page">
+
+    <script type="text/javascript">
+
+        $("#list-page").on("pageinit", onPageInit);
+        
+        $("#list-page").on("pageshow", function() {
+            console.log(listState);
+            if (listState === "all") {
+                showATMsandBranches();
+            }
+            else if (listState === "atm") {
+                showAtms();
+            }
+            else {
+                showBranches();
+            }
+        });
+
+        $("#returnToMapBtn").bind('touchstart', function(e) {
+            returnBack();
+        });
+
+        $("#returnToMapImage").bind('touchstart', function(e) {
+            console.log("bound image");
+            returnBack();
+        });
+
+        $("#showATMBtn").bind('touchstart', function(e) {
+            showAtms();
+            listState = "atm";
+        });
+
+        $("#showBranch").bind('touchstart', function(e) {
+            showBranches();
+            listState = "branch";
+        });
+
+        $("#showAll").bind('touchstart', function(e) {
+            showATMsandBranches();
+            listState = "all";
+        });
+
+        function onPageInit(e, data) {
+            for (var i = 0; i < serverResponse.length; i++) {
+//                alert(serverResponse.length);
+                var imageSource = getImagePath(serverResponse[i]);
+
+//                alert(serverResponse[i].latitude);
+//
+                $('#list').append(
+                        '<li><a style="padding-left: 0px" href="#">' +
+                        '<div id="mainDiv">' +
+                        '<div id="iconDiv"><p class="my_icon_wrapper">' +
+                        '<img class="listIcon" src="' + imageSource + '"></p>' +
+                        '</div>' +
+                        '<div id="nameAddressDiv"><p style="padding:0px; margin:0px;"><strong class="listItemTitle">' + serverResponse[i]["name"] + '</strong></p>' +
+                        '<p class="listItemAddress">' + serverResponse[i]["streetAddress"] + ', ' + serverResponse[i]["state"] + '</p></div>' +
+                        '<div id="distance"><p class="distance">' + distance(currentPosition.lat(), currentPosition.lng(), serverResponse[i].latitude, serverResponse[i].longitude) + '</p></div>' +
+                        '</div></a></li>').listview('refresh');
+            }
+
+            $('#list').on('click', 'li', function(event) {
+                selectedIndex = $(this).index();
+//                alert(selectedIndex);
+//                alert(String(serverResponse[selectedIndex]["serviceProviderTypeName"]).toLowerCase());
+                if (String(serverResponse[selectedIndex]["serviceProviderTypeName"]).toLowerCase() == "branch") {
+                    //   alert("call BRANCH details");
+                    $.mobile.changePage("detailedPageBranch.html");
+
+//                     setTimeout(function(){$.mobile.changePage('detailedPageBranch.html', { transition: "slide"});},400);
+                }
+                else {
+                    //   alert("call ATM details");
+//                    setTimeout(function(){$.mobile.changePage('detailedPageATM.html', { transition: "slide"});},400);
+                    $.mobile.changePage("detailedPageATM.html");
+                }
+
+            });
+        }
+
+        function showAtms() {
+            for (var i = 0; i < serverResponse.length; i++) {
+                if ((serverResponse[i]["serviceProviderTypeName"]).toLowerCase() == "branch") {
+                    $("#list li").eq(i).hide();
+                }
+                else {
+                    $("#list li").eq(i).show();
+                }
+            }
+        }
+
+        function showBranches() {
+            for (var i = 0; i < serverResponse.length; i++) {
+                if ((serverResponse[i]["serviceProviderTypeName"]).toLowerCase() == "atm") {
+                    $("#list li").eq(i).hide();
+                }
+                else {
+                    $("#list li").eq(i).show();
+                }
+            }
+        }
+
+        function showATMsandBranches() {
+            for (var i = 0; i < serverResponse.length; i++) {
+                $("#list li").eq(i).show();
+            }
+        }
+
+    </script>
+
+    <div data-role="header" data-position="fixed" data-theme="b" class="headerClass">
+        <!--<div class="center-wrapper" style="padding: 0px; vertical-align: middle;">-->
+        <a id="returnToMapBtn" style="height: 38%;" data-role="button" class="ui-icon-arrow-l ui-btn-icon-left"  data-mini="true" data-icon="arrow-l">
+        </a>
+        <h1 class="ui-title">List View</h1>
+        <!--<span data-role="none" class="ui-btn-right">-->
+        <a id="returnToMapImage" style="height: 38%;" data-role="button" class="ui-icon-location ui-btn-right"  data-mini="true" data-icon="location">
+            <!--<img src="img/map_pin_35.png"/>-->
+        </a>
+        <!--</span>-->
+
+        <!--</div>-->
+    </div><!-- /header -->
+
+    <div data-role="content" id="list-page-content" style="margin: 0px; padding: 0px;">
+        <div id="output" role="main" style="margin: 0px; padding: 0px;">
+            <ul data-role="listview" id="list" data-inset="true" data-filter="false" data-scroll="false" style="margin: 0px; padding: 0px;">
+
+            </ul>
+        </div>
+
+        <!-- <p><a href="#map-page">Back to foo</a></p>-->
+    </div><!-- /content -->
+
+    <div data-role="footer" data-position="fixed" id="footer" data-theme="b">
+        <div data-role="navbar" id="navbar">
+            <ul>
+                <li><a href="#" id="showATMBtn" data-role="button" class="ui-btn" >ATM</a></li>
+                <li><a href="#" id="showBranch" data-role="button">Branch</a></li>
+                <li><a href="#" id="showAll" data-role="button">Show All</a></li>
+
+            </ul>
+        </div>
+
+    </div><!-- /footer -->
+</div><!-- /page -->

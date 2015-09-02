@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+
+        <title>web modeling 4</title>
+        <script>
+
+            function onClick() {
+                var request;
+                request = new XMLHttpRequest();
+                request.open("GET", "Assignment3.xml", true);
+                request.send();
+
+                request.onreadystatechange = function() {
+                    if (request.readyState == 4 && request.status == 200) {
+                        var xml = request.responseXML;
+                        var persons = xml.getElementsByTagName("person");
+
+                        for (var i = 0; i < persons.length; i++) 
+                        {
+                            var person = persons[i];
+                            var attreb = person.attributes;
+
+                            for (var k = 0; k < attreb.length; k++) 
+                            {
+                                var content = document.createElement('span');
+
+                                if (attex[k].name == 'mother' || attex[k].name == 'father') 
+                                {
+                                    for (var ii = 0; ii < attreb.length; ii++) 
+                                    {
+                                        if (attreb[ii].name == 'id' && attreb[ii].value == txbox.value) {
+                                            //reading elements in the person element
+                                            var names = person.getElementsByTagName("name");
+                                            var occupation = person.getElementsByTagName("occupation");
+                                            var dob = person.getElementsByTagName("DOB");
+                                            var attex = person.attributes;
+                                            var attrib = new Array();
+
+                                            //creating new element for printing information 
+                                            var intro = document.createElement('span');
+                                            intro.innerHTML = ("<b>These are attributes and their values for person : </b>");
+                                            document.getElementById("container").appendChild(intro);
+
+                                            for (var j = 0; j < names.length; j++) {
+                                                var content = document.createElement('p');
+                                                content.innerHTML = "Name of person is  :" + (names[j].childNodes[0].nodeValue) + "<br/>";
+                                                document.getElementById("container").appendChild(content);
+                                            }
+                                            for (var j = 0; j < occupation.length; j++) {
+                                                var content = document.createElement('p');
+                                                content.innerHTML = "His occupation is  :" + (occupation[j].childNodes[0].nodeValue) + "<br/>";
+                                                document.getElementById("container").appendChild(content);
+                                            }
+                                            for (var j = 0; j < dob.length; j++) {
+                                                var content = document.createElement('p');
+                                                content.innerHTML = "His occupation is  :" + (dob[j].childNodes[0].nodeValue) + "<br/>";
+                                                document.getElementById("container").appendChild(content);
+                                            }
+
+                                        }
+                                    }
+                                }
+                            }
+                            }
+                                                 
+                        }//end of if on state change
+
+                    }//end of state change
+
+    }//end of onClick
+                    
+                         
+        </script>
+    </head>
+    <body>
+        <h1>This is list of all the stuff you want to know... </h1>
+        <div id="container" style="width:100%;"></div>
+        <br/>		
+        <input type='text' id='txbox'/>
+        <button id='getParent' onclick='onClick'>Boobies</button>
+    </body>
+</html>

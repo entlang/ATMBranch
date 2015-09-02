@@ -1,0 +1,202 @@
+{"list": [
+  {
+    "markerPointId": "-37.88709:145.08289:wbc",
+    "locationId": "-37.88709:145.08289",
+    "serviceProviderTypeName": "Branch",
+    "name": "Chadstone Centre",
+    "services": [
+      {
+        "type": "Branch",
+        "serviceProviderId": "wbc-2--37.88709:145.08289",
+        "services": [
+          {
+            "serviceName": "Open Saturdays",
+            "serviceTypeId": 16
+          },
+          {
+            "serviceName": "Home loan expert",
+            "serviceUrl": "https://forms.westpac.com.au/Forms/Forms.nsf/hlcExpert?OpenForm",
+            "serviceTypeId": 11
+          },
+          {
+            "serviceName": "BT Investment",
+            "serviceTypeId": 5
+          },
+          {
+            "serviceName": "Internet Banking kiosks",
+            "serviceTypeId": 12
+          },
+          {
+            "serviceName": "Business Banking adviser",
+            "serviceUrl": "/business-banking/contact-a-business-banker/",
+            "serviceTypeId": 6
+          },
+          {
+            "serviceName": "Foreign currency instore",
+            "serviceUrl": "/personal-banking/services/overseas-services/foreign-currency-instore/",
+            "serviceTypeId": 9
+          },
+          {
+            "serviceName": "Disabled access",
+            "serviceTypeId": 7
+          },
+          {
+            "serviceName": "Financial adviser",
+            "serviceUrl": "https://forms.westpac.com.au/Forms/single_page_forms.nsf/f_appointmentInvestSuper?OpenForm",
+            "serviceTypeId": 8
+          },
+          {
+            "serviceName": "Insurance",
+            "serviceTypeId": 17
+          }
+        ],
+        "mondayOpenTime": "9:00am",
+        "mondayCloseTime": "5:00pm",
+        "tuesdayOpenTime": "9:00am",
+        "tuesdayCloseTime": "5:00pm",
+        "wednesdayOpenTime": "9:00am",
+        "wednesdayCloseTime": "5:00pm",
+        "thursdayOpenTime": "9:00am",
+        "thursdayCloseTime": "5:00pm",
+        "fridayOpenTime": "9:30am",
+        "fridayCloseTime": "5:00pm",
+        "saturdayOpenTime": "9:30am",
+        "saturdayCloseTime": "1:00pm",
+        "sundayOpenTime": "",
+        "sundayCloseTime": "",
+        "operatingHoursComment": "Foreign currency open Monday - Friday only."
+      },
+      {
+        "type": "ATM",
+        "serviceProviderId": "wbc-1--37.88709:145.08289-21722",
+        "services": [
+          {
+            "serviceName": "Accepts deposits",
+            "serviceTypeId": 2
+          },
+          {
+            "serviceName": "Access 24 hours",
+            "serviceTypeId": 3
+          },
+          {
+            "serviceName": "Audio ATM",
+            "serviceTypeId": 4
+          },
+          {
+            "serviceName": "Disabled access",
+            "serviceTypeId": 7
+          }
+        ],
+        "mondayOpenTime": "12:00am",
+        "mondayCloseTime": "11:59pm",
+        "tuesdayOpenTime": "12:00am",
+        "tuesdayCloseTime": "11:59pm",
+        "wednesdayOpenTime": "12:00am",
+        "wednesdayCloseTime": "11:59pm",
+        "thursdayOpenTime": "12:00am",
+        "thursdayCloseTime": "11:59pm",
+        "fridayOpenTime": "12:00am",
+        "fridayCloseTime": "11:59pm",
+        "saturdayOpenTime": "12:00am",
+        "saturdayCloseTime": "11:59pm",
+        "sundayOpenTime": "12:00am",
+        "sundayCloseTime": "11:59pm"
+      }
+    ],
+    "streetAddress": "Shop 463, Chadstone Shopping Centre, 1341 Dandenong Rd",
+    "suburb": "Chadstone",
+    "state": "VIC",
+    "postcode": "3148",
+    "phoneNumber": "0385310466",
+    "country": "Australia",
+    "bsb": "033181",
+    "brandName": "Westpac",
+    "brandCode": "wbc",
+    "latitude": -34.434482,
+    "longitude": 150.877481,
+    "maxZoomLevel": 0,
+    "minZoomLevel": 0
+  },
+  {
+    "markerPointId": "-37.88709:145.08289:wbc",
+    "locationId": "-37.88709:145.08289",
+    "serviceProviderTypeName": "ATM",
+    "name": "Chadstone Centre",
+    "services": [
+      {
+        "type": "ATM",
+        "serviceProviderId": "wbc-2--37.88709:145.08289",
+        "services": [
+          {
+            "serviceName": "Open Saturdays",
+            "serviceTypeId": 16
+          },
+          {
+            "serviceName": "Home loan expert",
+            "serviceUrl": "https://forms.westpac.com.au/Forms/Forms.nsf/hlcExpert?OpenForm",
+            "serviceTypeId": 11
+          },
+          {
+            "serviceName": "BT Investment",
+            "serviceTypeId": 5
+          },
+          {
+            "serviceName": "Internet Banking kiosks",
+            "serviceTypeId": 12
+          },
+          {
+            "serviceName": "Business Banking adviser",
+            "serviceUrl": "/business-banking/contact-a-business-banker/",
+            "serviceTypeId": 6
+          },
+          {
+            "serviceName": "Foreign currency instore",
+            "serviceUrl": "/personal-banking/services/overseas-services/foreign-currency-instore/",
+            "serviceTypeId": 9
+          },
+          {
+            "serviceName": "Disabled access",
+            "serviceTypeId": 7
+          },
+          {
+            "serviceName": "Financial adviser",
+            "serviceUrl": "https://forms.westpac.com.au/Forms/single_page_forms.nsf/f_appointmentInvestSuper?OpenForm",
+            "serviceTypeId": 8
+          },
+          {
+            "serviceName": "Insurance",
+            "serviceTypeId": 17
+          }
+        ],
+        "mondayOpenTime": "9:00am",
+        "mondayCloseTime": "5:00pm",
+        "tuesdayOpenTime": "9:00am",
+        "tuesdayCloseTime": "5:00pm",
+        "wednesdayOpenTime": "9:00am",
+        "wednesdayCloseTime": "5:00pm",
+        "thursdayOpenTime": "9:00am",
+        "thursdayCloseTime": "5:00pm",
+        "fridayOpenTime": "9:30am",
+        "fridayCloseTime": "5:00pm",
+        "saturdayOpenTime": "9:30am",
+        "saturdayCloseTime": "1:00pm",
+        "sundayOpenTime": "",
+        "sundayCloseTime": "",
+        "operatingHoursComment": "Foreign currency open Monday - Friday only."
+      }
+    ],
+    "streetAddress": "Shop 463, Chadstone Shopping Centre, 1341 Dandenong Rd",
+    "suburb": "Chadstone",
+    "state": "VIC",
+    "postcode": "3148",
+    "phoneNumber": "0385310466",
+    "country": "Australia",
+    "bsb": "033181",
+    "brandName": "Westpac",
+    "brandCode": "wbc",
+    "latitude": -34.411300,
+    "longitude": 150.876392,
+    "maxZoomLevel": 0,
+    "minZoomLevel": 0
+  }
+]}

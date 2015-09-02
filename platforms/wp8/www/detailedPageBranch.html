@@ -1,0 +1,140 @@
+<div data-role="page" id="detailed-page-branch" class="pageStyling  ui-page ">
+    <script>
+        $("#detailed-page-branch").on("pageinit", onPageInit);
+        $("#returnBtn").bind('click', function (e) {
+            returnBack();
+        })
+
+        var openingTimeBranch = [];
+        var openingTimeATM = [];
+
+        function onPageInit() {
+
+            var prevSelection = "tab1";
+            var prevSelId = "tab_1";
+            $("#tab_1").addClass('tabActive');
+            $("#tab_2").addClass('tabInactive');
+
+            $("#navbarS ul li").on("click", function() {
+                var tabSelection = $(this).children("a").attr("id");
+                var newSelection = $(this).children("a").attr("data-tab-class");
+                $("#" + prevSelId).removeClass('tabActive').addClass("tabInactive");
+                $("." + prevSelection).addClass("ui-screen-hidden");
+
+                $("#" + tabSelection).removeClass('tabInactive').addClass("tabActive");
+                $("." + newSelection).removeClass("ui-screen-hidden");
+                prevSelection = newSelection;
+                prevSelId = tabSelection;
+            });
+
+            var object = serverResponse[selectedIndex];
+
+            for (var i = 0; i < object["services"].length; i++) {
+                var newObj = object["services"][i];
+                //alert(newObj["services"][0]["serviceName"]);
+                if (String(newObj["type"]).toLowerCase() == "atm") {
+                    $("#name").text(object["name"]);
+                    $("#streetAddress").text(object["streetAddress"] + ", " + object["state"] + " " + object["postcode"]);
+                    $("#bsb").text("BSB: " + object["bsb"]);
+
+                    if (newObj["services"]) {
+                        for (var j = 0; j < newObj["services"].length; j++) {
+                            $("#services").append('<p class="subElements">' + "-" + newObj["services"][j]["serviceName"] + '</p>');
+                        }
+                    }
+                    else {
+                        $("#services").append('<p class="subElements">-Does not accept deposit.</p>');
+                    }
+                    openingTimeATM[0] = {openTime: newObj["mondayOpenTime"], closeTime: newObj["mondayCloseTime"]};
+                    openingTimeATM[1] = {openTime: newObj["tuesdayOpenTime"], closeTime: newObj["tuesdayCloseTime"]};
+                    openingTimeATM[2] = {openTime: newObj["wednesdayOpenTime"], closeTime: newObj["wednesdayCloseTime"]};
+                    openingTimeATM[3] = {openTime: newObj["thursdayOpenTime"], closeTime: newObj["thursdayCloseTime"]};
+                    openingTimeATM[4] = {openTime: newObj["fridayOpenTime"], closeTime: newObj["fridayCloseTime"]};
+                    openingTimeATM[5] = {openTime: newObj["saturdayOpenTime"], closeTime: newObj["saturdayCloseTime"]};
+                    openingTimeATM[6] = {openTime: newObj["sundayOpenTime"], closeTime: newObj["sundayCloseTime"]};
+                    calculateTime(openingTimeATM, "openingHours");
+                }
+                else if (String(newObj["type"]).toLowerCase() == "branch") {
+                    $("#nameBranch").text(object["name"]);
+                    $("#streetAddressBranch").text(object["streetAddress"] + ", " + object["state"] + " " + object["postcode"]);
+                    $("#bsbBranch").text("BSB: " + object["bsb"]);
+
+                    if (newObj["services"]) {
+                        for (var j = 0; j < newObj["services"].length; j++) {
+                            $("#servicesBranch").append('<p class="subElements">' + "-" + newObj["services"][j]["serviceName"] + '</p>');
+                        }
+                    }
+                    else {
+                        $("#servicesBranch").append('<p class="subelements">-Does not accept deposit.</p>');
+                    }
+                    openingTimeBranch[0] = {openTime: newObj["mondayOpenTime"], closeTime: newObj["mondayCloseTime"]};
+                    openingTimeBranch[1] = {openTime: newObj["tuesdayOpenTime"], closeTime: newObj["tuesdayCloseTime"]};
+                    openingTimeBranch[2] = {openTime: newObj["wednesdayOpenTime"], closeTime: newObj["wednesdayCloseTime"]};
+                    openingTimeBranch[3] = {openTime: newObj["thursdayOpenTime"], closeTime: newObj["thursdayCloseTime"]};
+                    openingTimeBranch[4] = {openTime: newObj["fridayOpenTime"], closeTime: newObj["fridayCloseTime"]};
+                    openingTimeBranch[5] = {openTime: newObj["saturdayOpenTime"], closeTime: newObj["saturdayCloseTime"]};
+                    openingTimeBranch[6] = {openTime: newObj["sundayOpenTime"], closeTime: newObj["sundayCloseTime"]};
+                    calculateTime(openingTimeBranch, "tradingHoursBranch");
+                }
+            }
+        }
+
+    </script>
+
+    <div data-role="header" data-position="fixed"  data-theme="b" class="headerClass">
+        <a id="returnBtn" style="height: 38%;" data-role="button" class="ui-icon-arrow-l ui-btn-icon-left"  data-mini="true" data-icon="arrow-l">
+        </a>
+        <h1>Branch Details</h1>
+    </div>
+    <div data-role="content" class="branchDetailedContent">
+
+        <div data-role="navbar" id="navbarS" >
+            <ul>
+                <li><a href="#" id="tab_1" data-tab-class="tab1" class="ui-btn-active">Branch</a></li>
+                <li><a href="#" id="tab_2" data-tab-class="tab2" >ATM</a></li>
+            </ul>
+        </div>
+
+        <div class="tab-content">
+            <div class="tab1">
+                <div class="detailedMain">
+                    <h2 class="detailedName" id="nameBranch"></h2>
+                    <p class="addressAndBSB" id="streetAddressBranch"></p>
+                    <p class="addressAndBSB" id="bsbBranch"></p>
+                    <hr class="horizontalLine">
+
+                    <div>
+                        <h2 class="detailsSubTitle">Branch</h2>
+                        <div id="tradingHoursBranch" class="subElements">
+                            <h3 class="subTitle">Trading hours</h3>
+                        </div>
+                        <div id="servicesBranch" class="subElements">
+                            <h3 class="subTitle">Services</h3>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="tab2 ui-screen-hidden">
+                <div class="detailedMain">
+                    <h2 class="detailedName" id="name"></h2>
+                    <p class="addressAndBSB" id="streetAddress"></p>
+                    <p class="addressAndBSB" id="bsb"></p>
+                    <hr class="horizontalLine">
+                    <div>
+                        <h2 class="detailsSubTitle">ATM</h2>
+                        <div id="openingHours" class="subElements">
+                            <h3 class="subTitle">Opening hours</h3>
+                        </div>
+                        <div id="services" class="subElements">
+                            <h3 class="subTitle">Services</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
